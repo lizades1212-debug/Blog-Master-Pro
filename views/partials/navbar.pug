@@ -1,0 +1,32 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  .container
+
+    a.navbar-brand(href="/dashboard")
+      | Blog Master Pro
+
+    button.navbar-toggler(
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    )
+      span.navbar-toggler-icon
+
+    .collapse.navbar-collapse#navbarNav
+
+      ul.navbar-nav.ms-auto
+
+        li.nav-item
+          a.nav-link(href="/dashboard")
+            | Dashboard
+
+        li.nav-item
+          a.nav-link(href="/blogs")
+            | Blogs
+
+        li.nav-item
+          a.nav-link(href="/blogs/create")
+            | Create Blog
+
+        li.nav-item
+          a.nav-link.text-danger(href="/logout")
+            | Logout
