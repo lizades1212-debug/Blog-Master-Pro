@@ -13,8 +13,20 @@ html
     )
 
     style.
+
+      html, body {
+        height: 100%;
+        margin: 0;
+      }
+
       body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
         background-color: #f8f9fa;
+      }
+      .main-content {
+        flex: 1;
       }
 
       .card {
@@ -73,39 +85,51 @@ html
       @media(max-width: 768px) {
 
         .card-title {
-          font-size: 1.7rem;
+          font-size: 1.5rem;
         }
 
         .card-body {
-          padding: 22px;
+          padding: 20px;
+        }
+
+        .card-text {
+          font-size: 15px;
         }
 
         .btn {
-          margin-bottom: 10px;
+          margin-bottom: 8px;
+          padding: 8px 14px;
+          font-size: 14px;
+        }
+
+        .badge {
+          font-size: 12px;
+          padding: 6px 10px;
         }
       }
 
   body
 
     include partials/navbar
+    .main-content
 
-    .container.mt-4.mb-5
+      .container.mt-4.mb-5
 
-      h1.text-center.mb-5.fw-bold All Blogs
+        h1.text-center.mb-5.fw-bold All Blogs
 
-      if success_msg.length > 0
-        .alert.alert-success.shadow-sm
-          = success_msg[0]
+        if success_msg.length > 0
+          .alert.alert-success.shadow-sm
+            = success_msg[0]
 
-      if error_msg.length > 0
-        .alert.alert-danger.shadow-sm
-          = error_msg[0]
+        if error_msg.length > 0
+         .alert.alert-danger.shadow-sm
+           = error_msg[0]
 
-      each blog in blogs
+        each blog in blogs
 
-        .card.mb-4.shadow-sm
+          .card.mb-4.shadow-sm
 
-          .card-body
+           .card-body
 
             h2.card-title= blog.title
 
@@ -137,7 +161,7 @@ html
 
             if user && (user.role === "admin" || (blog.author && user.id == blog.author._id))
 
-              a.btn.btn-warning.me-2(
+              a.btn.btn-warning.me-2.mb-2(
                 href='/blogs/edit/' + blog._id
               )
                 | Edit Blog
@@ -149,7 +173,7 @@ html
                   method='POST'
                 )
 
-                  button.btn.btn-danger(
+                  button.btn.btn-danger.mb-2(
                     type='submit'
                     onclick="return confirm('Are you sure you want to delete this blog?')"
                   )
@@ -164,7 +188,7 @@ html
                 method='POST'
               )
 
-                button.btn.btn-secondary.me-2(type='submit')
+                button.btn.btn-secondary.me-2.mb-2(type='submit')
                   | Mark as Reviewed
 
               form.d-inline(
@@ -172,7 +196,7 @@ html
                 method='POST'
               )
 
-                button.btn.btn-success.me-2(type='submit')
+                button.btn.btn-success.me-2.mb-2(type='submit')
                   | Approve Blog
 
               form.d-inline(
@@ -180,7 +204,7 @@ html
                 method='POST'
               )
 
-                button.btn.btn-dark.me-2(type='submit')
+                button.btn.btn-dark.me-2.mb-2(type='submit')
                   | Reject Blog
 
               if blog.approveStatus === "delete-pending"
@@ -190,11 +214,11 @@ html
                   method='POST'
                 )
 
-                  button.btn.btn-danger(type='submit')
+                  button.btn.btn-danger.mb-2(type='submit')
                     | Approve Delete
 
     include partials/footer
 
     script(
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    ) 
+    )
